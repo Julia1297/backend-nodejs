@@ -19,9 +19,4 @@ module.exports = function (clientsService) {
       }
     }          
   };
-}/*
-module.exports = db => {
-    getAllClients(req, res) {
-      return res.send({ data: 'reached /clients index route!' });
-    },
-  };*/
+}

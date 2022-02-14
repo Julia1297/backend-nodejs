@@ -24,7 +24,7 @@ module.exports = function (db) {
             catch (error) {
                 return error;
             }
-        },
+        }/*,
         async findClientByName(name) {
             const clientsFound = await this.clientModel.findAll({
                 where: {
@@ -60,7 +60,7 @@ module.exports = function (db) {
                     id
                 }
             });
-        }
+        }*/
     };
 }
 /*

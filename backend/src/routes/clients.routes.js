@@ -1,3 +1,4 @@
+const { check, validationResult }= require('express-validator');
 let clientsService = require('../services/clients.service');
 let clientsController = require('../controllers/clients.controller');
 
@@ -11,18 +12,17 @@ module.exports = function(app, db) {
     });*/
     clientsService = clientsService(db);
     clientsController = clientsController(clientsService)
-    console.log(db.clients)
+    app.get("/api/clients", clientsController.getAllClients);
+    app.post("/api/clients",[
+        check('client.name', 'Name length should be 10 to 20 characters').isLength({ min: 10, max: 20 })
+    ], (req, res) => {
+        console.log("lllllllllllllllll")
 
-    console.log(clientsService.db)
-
-    console.log(clientsController.getAllClients)
-    app.get(
-        "/api/clients",
-        clientsController.getAllClients
-      );
-    app.post(
-        "/api/clients",
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(422).json({ errors: errors.array() });
+        }
         clientsController.createClient
-      );
+    });
   };
   
