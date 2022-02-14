@@ -4,8 +4,6 @@ module.exports = function (db) {
     let clientModel =  db.clients;
     return {
         async findAllClients(){
-            console.log("-------------", clientModel)
-
             try {   
                 const clients = await clientModel.findAll();
                 return clients;
@@ -15,11 +13,9 @@ module.exports = function (db) {
             }
         },
         async createClient(client) {
-            console.log("-------------", clientModel)
-
             try {   
                 const createdClient = await clientModel.create(client);
-                return clients;
+                return createdClient;
             }
             catch (error) {
                 return error;

@@ -11,43 +11,14 @@ module.exports = function (db) {
             catch (error) {
                 return error;
             }
+        },
+        async getMobilitiesByClient(clientId) {
+            const mobilitiesFound = await mobilities.findAll({
+                where: { 
+                    client_id: clientId 
+                }
+            });
+            return mobilitiesFound;
         }
-       /*,
-        async findClientByName(name) {
-            const clientsFound = await this.clientModel.findAll({
-                where: {
-                  name: {
-                    [Op.substring] : name
-                  }
-                }
-            });
-            return clientsFound;
-        },
-    
-        async findClientById(id) {
-            const clientFound = await this.clientModel.findOne({
-                where: {
-                    id
-                }
-            });
-            return clientFound;
-        },
-    
-        async deleteClientById(id) {
-            const response = await this.clientModel.destroy({
-                where: {
-                    id
-                }
-            });
-            return response;
-        },
-    
-        async updateClient(id, client) {
-            const response = await this.clientModel.update(client, {
-                where: {
-                    id
-                }
-            });
-        }*/
     };
 }

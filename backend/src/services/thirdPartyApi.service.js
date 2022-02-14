@@ -8,7 +8,8 @@ module.exports = function (url) {
                     if (err) { return err; }
                     console.log(body.url);
                     console.log(body.explanation);
-                    console.log(res);
+                    console.log(res.body);
+                    return res.body;
                 });  
             }
             catch (error) {

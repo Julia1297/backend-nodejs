@@ -1,7 +1,6 @@
 module.exports = function (clientsService) {
   return {
     getAllClients: async (req, res, next) => {
-      console.log("typeof",typeof clientsService.findAllClients);
       try {
         const response = await  clientsService.findAllClients()
         return res.status(200).json(response); 

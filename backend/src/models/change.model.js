@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
       notes: {
         type: Sequelize.STRING(150),
       },
-      automobile_id: {
+      mobility_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {        

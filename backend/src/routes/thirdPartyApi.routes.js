@@ -10,7 +10,6 @@ module.exports = function(app, db) {
       next();
     });*/
     thirdPartyApiService = thirdPartyApiService('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY');
-    console.log("typeof route", typeof thirdPartyApiService.callOtherApi);
     thirdPartyApiController = thirdPartyApiController(thirdPartyApiService);
      app.get(
         "/api/thirdApi",
