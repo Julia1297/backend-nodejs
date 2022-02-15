@@ -1,5 +1,3 @@
-const service = require('../services/thirdPartyApi.service');
-
 module.exports = function (thirdPartyApiService) {
     return {
         callWithRequest: async (req, res, next) => {
