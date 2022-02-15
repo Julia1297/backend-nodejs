@@ -11,9 +11,11 @@ module.exports = function(app, db) {
       next();
     });
     clientsService = clientsService(db);
-    clientsController = clientsController(clientsService)
-    console.log("...:", validations.createClientSchema);
+    clientsController = clientsController(clientsService);
+
     app.get("/api/clients", clientsController.getAllClients);
     app.post("/api/clients", validations.createClientSchema, clientsController.createClient);
+    app.get("/api/clients/:id", clientsController.findClientById);
+    app.delete("/api/clients/:id", clientsController.deleteClientById);
   };
   

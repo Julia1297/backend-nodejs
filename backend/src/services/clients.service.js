@@ -20,93 +20,32 @@ module.exports = function (db) {
             catch (error) {
                 return error;
             }
-        }/*,
-        async findClientByName(name) {
-            const clientsFound = await this.clientModel.findAll({
-                where: {
-                  name: {
-                    [Op.substring] : name
-                  }
-                }
-            });
-            return clientsFound;
         },
-    
         async findClientById(id) {
-            const clientFound = await this.clientModel.findOne({
+            const clientFound = await clientModel.findOne({
                 where: {
                     id
                 }
             });
             return clientFound;
         },
-    
         async deleteClientById(id) {
-            const response = await this.clientModel.destroy({
+            const response = await clientModel.destroy({
                 where: {
                     id
+                }
+            });
+            console.log(response);
+            
+            return response;
+        },        
+        async updateClient(client) {
+            const response = await clientModel.update(client, {
+                where: {
+                    id: client.id 
                 }
             });
             return response;
-        },
-    
-        async updateClient(id, client) {
-            const response = await this.clientModel.update(client, {
-                where: {
-                    id
-                }
-            });
-        }*/
+        }
     };
 }
-/*
-class ClientService {
-    constructor(clientModel) {
-        this.clientModel = clientModel;
-    }
-
-    async createClient(client) {
-        const createdClient = await this.clientModel.create(client);
-        return createdClient;
-    }
-
-    async findClientByName(name) {
-        const clientsFound = await this.clientModel.findAll({
-            where: {
-              name: {
-                [Op.substring] : name
-              }
-            }
-        });
-        return clientsFound;
-    }
-
-    async findClientById(id) {
-        const clientFound = await this.clientModel.findOne({
-            where: {
-                id
-            }
-        });
-        return clientFound;
-    }
-
-    async deleteClientById(id) {
-        const response = await this.clientModel.destroy({
-            where: {
-                id
-            }
-        });
-        return response;
-    }
-
-    async updateClient(id, client) {
-        const response = await this.clientModel.update(client, {
-            where: {
-                id
-            }
-        });
-    }
-};
-
-module.exports = ClientService;
-*/

@@ -12,6 +12,7 @@ module.exports = (sequelize, Sequelize) => {
       mobility_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        onDelete: 'CASCADE',
         references: {        
           model: 'mobilities',
           key: 'id'
