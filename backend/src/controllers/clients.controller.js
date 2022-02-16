@@ -2,7 +2,7 @@ module.exports = function (clientsService) {
   return {
     getAllClients: async (req, res, next) => {
       try {
-        const response = await  clientsService.findAllClients()
+        const response = await  clientsService.findAllClients(req.query)
         return res.status(200).json(response); 
       } catch (error) {
         next(error);
@@ -28,7 +28,13 @@ module.exports = function (clientsService) {
     deleteClientById: async (req, res, next) => {
       try {
         console.log(req.params.id)
-        const response = await clientsService.deleteClientById(req.params.id)
+        let response = await clientsService.deleteClientById(req.params.id)
+        if(parseInt(response) > 0){
+          response = {message: "The item was deleted successfully."}
+        }
+        else {
+          response = {message: "The item was not found."}
+        }
         return res.status(200).json(response); 
       } catch (error) {
         next(error);
@@ -37,8 +43,14 @@ module.exports = function (clientsService) {
     updateClient: async (req, res, next) => {
       try {
         const client = req.body.client;
-        const response = await  clientsService.updateClient(client)
-        return res.status(200).json(response); 
+        const id = req.params.id;
+        let response = await  clientsService.updateClient(client, id);
+        if(parseInt(response[0]) > 0){
+          response = {message: "The item was updated successfully."}
+        }
+        else {
+          response = {message: "The item was not found."}
+        }        return res.status(200).json(response); 
       } catch (error) {
         next(error);
       }

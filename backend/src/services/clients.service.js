@@ -3,10 +3,24 @@ const Op = require('sequelize').Op;
 module.exports = function (db) {
     let clientModel =  db.clients;
     return {
-        async findAllClients(){
+        async findAllClients(filters){
             try {   
-                const clients = await clientModel.findAll();
-                return clients;
+                let { offset, size } = filters;
+                if (!offset) {
+                    offset = 0;
+                }
+                if (!size) {
+                    size = 5;
+                }
+                const limit = parseInt(size);
+                const clients = await clientModel.findAll({
+                    offset: offset, limit: limit,
+                });
+                return {
+                    offset: clients.length + parseInt(offset),
+                    limit: limit,
+                    clients: clients
+                }
             }
             catch (error) {
                 return error;
@@ -35,14 +49,12 @@ module.exports = function (db) {
                     id
                 }
             });
-            console.log(response);
-            
             return response;
         },        
-        async updateClient(client) {
+        async updateClient(client, id) {
             const response = await clientModel.update(client, {
                 where: {
-                    id: client.id 
+                    id: id
                 }
             });
             return response;
