@@ -18,6 +18,5 @@ module.exports = function(app, db) {
     app.get("/api/clients/:id", clientsController.findClientById);
     app.delete("/api/clients/:id", clientsController.deleteClientById);
     app.patch("/api/clients/:id", clientsController.updateClient);
-
   };
   
