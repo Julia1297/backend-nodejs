@@ -5,7 +5,7 @@ module.exports = function (url) {
         async callOtherApi() {
             try {
                 const responseRequest = await axios.get(url)
-                return responseRequest.data;
+                return {response: responseRequest.data};
             } catch (err) {
                 throw new Error('Error request with third api.')
             }           

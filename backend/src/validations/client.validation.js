@@ -1,6 +1,5 @@
 const Joi = require('joi');
-const validateRequestBody = require('./helpers');
-const validateRequestParams = require('./helpers');
+const validateTypes = require('./helpers');
 module.exports = function () {
     return {
         validateCreateClient: (req, res, next) => {
@@ -16,8 +15,9 @@ module.exports = function () {
                     })
                 }
             });
-            return validateRequestBody(req,res, next, schema);
+            return validateTypes.validateRequestBody(req, res, next, schema);
         },
+        
         validateGetById: (req, res, next) => {
             const schema = Joi.object({
                 size: Joi.required()
@@ -25,7 +25,7 @@ module.exports = function () {
                 'any.required': `Size is required .`
                 })
             });
-        return validateRequestQuery(req,res, next, schema);
+            return validateTypes.validateRequestQuery(req, res, next, schema);
         }
     };
-  }
+}

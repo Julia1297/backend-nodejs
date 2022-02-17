@@ -50,7 +50,8 @@ module.exports = function (clientsService) {
         }
         else {
           response = {message: "The item was not found."}
-        }        return res.status(200).json(response); 
+        }       
+        return res.status(200).json(response); 
       } catch (error) {
         next(error);
       }
