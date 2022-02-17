@@ -13,9 +13,9 @@ module.exports = function(app, db) {
     clientsService = clientsService(db);
     clientsController = clientsController(clientsService);
 
-    app.get("/api/clients", clientsController.getAllClients);
-    app.post("/api/clients", validations.createClientSchema, clientsController.createClient);
-    app.get("/api/clients/:id", clientsController.findClientById);
+    app.get("/api/clients", validations.validateGetById, clientsController.getAllClients);
+    app.post("/api/clients", validations.validateCreateClient, clientsController.createClient);
+    app.get("/api/clients/:id",  clientsController.findClientById);
     app.delete("/api/clients/:id", clientsController.deleteClientById);
     app.patch("/api/clients/:id", clientsController.updateClient);
   };
